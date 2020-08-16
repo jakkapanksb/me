@@ -24,13 +24,16 @@ const Container = styled.div`
   }
 `;
 
+const diffDays = Math.ceil(
+  (new Date().getTime() - new Date('03/09/2020').getTime()) / (1000 * 3600 * 24)
+);
+
 const Home = ({
   setShowCursor,
 }: {
   setShowCursor: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [step, setStep] = React.useState(0);
-  const days = 152;
   const transitions = useTransition(step, null, {
     from: { position: 'absolute', opacity: 0 },
     enter: { opacity: 1 },
@@ -59,7 +62,7 @@ const Home = ({
         item === 0 ? (
           <Container>
             <animated.p style={props}>
-              We've been in lockdown for {days} days
+              We've been in lockdown for {diffDays} days
             </animated.p>
           </Container>
         ) : item === 1 ? (
