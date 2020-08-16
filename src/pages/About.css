@@ -1,0 +1,73 @@
+/* #root { */
+/* overflow: auto; */
+/* background-color: white; */
+/* } */
+
+/* #root::-webkit-scrollbar {
+  display: none;
+} */
+
+/* body { */
+/* font-size: 40px; */
+/* background-color: white;
+  color: black; */
+/* } */
+
+/* body {
+  background-color: white;
+  color: black;
+} */
+
+/* .flex-container { */
+/* display: flex; */
+/* height: 100%; */
+/* -webkit-overflow-scrolling: touch; */
+/* white-space: nowrap; */
+/* overflow-x: scroll;
+  overflow-y: auto; */
+/* flex-wrap: nowrap;
+  height: 97vh;
+  justify-content: flex-start;
+  color: black;
+  font-size: 5vh; */
+/* } */
+
+.flex-item {
+  flex: 0 0 500px;
+  /* margin: 40px; */
+  /* white-space: nowrap; */
+  margin: 0 3vw;
+  position: relative;
+}
+
+.blu-main {
+  width: 852px;
+  height: 852px;
+  transition: background-image 1s linear;
+  background-image: url(https://www.dropbox.com/s/dx23fdw7u3as95z/blu_main.jpg?dl=1);
+  background-size: 852px 852px;
+}
+
+.blu-main:hover {
+  background-image: url(https://www.dropbox.com/s/dxanp0t3vphs3e8/blu_hover.jpg?dl=1);
+}
+
+.eve-main {
+  width: 852px;
+  height: 852px;
+  transition: background-image 0.5s linear;
+  background-image: url(https://www.dropbox.com/s/3iyfgfaylynnp8f/eve_main.jpg?dl=1);
+  background-size: 852px 852px;
+}
+
+.eve-main:hover {
+  background-image: url(https://www.dropbox.com/s/1ia0iqpqonrs8kd/eve_hover.jpg?dl=1);
+}
+
+/* .label {
+  position: absolute;
+  top: 0;
+  right: -5%;
+  font-size: 3em;
+  cursor: default;
+} */

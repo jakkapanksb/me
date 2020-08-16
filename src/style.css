@@ -1,0 +1,136 @@
+/* #root {
+  overflow-x: visible;
+} */
+
+/* html,
+body,
+#root {
+  height: 100%;
+} */
+
+body {
+  background-color: #181818;
+  /* background-color: #090809; Home */
+  color: white;
+  user-select: none;
+  /* cursor: url(https://www.dropbox.com/s/5s7mmmwn1mtuvnl/cursor-v3.png?dl=1),
+    move; */
+  cursor: none;
+  /* font-family: 'Libre Baskerville', serif; */
+  /* font-family: orpheuspro, serif; */
+  font-family: 'Space Mono', monospace;
+  /* overflow-x: hidden; */
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.flex-item-1 {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  align-items: flex-end;
+  margin-right: 1vw;
+}
+
+.flex-item-2 {
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 1vw;
+}
+
+.images {
+  max-width: 100%;
+  min-width: 200px;
+  height: auto;
+  /* margin: 20px; */
+  /* margin-top: 30vh; */
+  margin-top: 29vh;
+}
+
+.image-1 {
+  align-self: flex-start;
+}
+
+.image-2 {
+  align-self: center;
+}
+
+.image-3 {
+  align-self: flex-end;
+}
+
+.first-right-image {
+  margin-top: 30vh;
+}
+
+.first-left-image {
+  margin-top: 5vh;
+}
+
+.label {
+  position: relative;
+  /* padding: 20px 0; */
+  /* font-size: 2.2vw; */
+  /* font-size: calc(20px + 1.7vw); */
+  text-align: left;
+  color: white;
+  margin-top: 10vh;
+  transition: top 1s linear;
+  line-height: normal;
+}
+
+.title {
+  text-align: left;
+  font-size: 9vw;
+  position: absolute;
+  /* top: 55vh; */
+  /* right: 1vw; */
+  left: 0vw;
+  color: white;
+  transition: top 1s linear;
+}
+
+.image-box {
+  position: relative;
+  display: inline-block;
+}
+
+.image-box img {
+  transition: all linear 0.5s;
+}
+
+img.hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.image-box img:hover {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  .images {
+    margin-top: 5vh;
+  }
+
+  .image-1,
+  .image-3 {
+    align-self: center;
+  }
+
+  .label {
+    margin-top: 0;
+  }
+
+  .first-right-image {
+    margin-top: 0;
+  }
+}
