@@ -5,7 +5,7 @@ import {
   // BrowserRouter as Router,
   Switch,
   Route,
-  HashRouter,
+  useLocation,
 } from 'react-router-dom';
 import Anxious from 'pages/Anxious';
 import Cursor from 'components/Cursor';
@@ -13,13 +13,42 @@ import Cursor from 'components/Cursor';
 import './style.css';
 import Home from 'pages/Home';
 import About from 'pages/About';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import withNav from 'hoc/withNav';
+
+export type State = {
+  step: number;
+};
 
 export const MainContainer = styled.div`
   /* margin: 4vw 4vw 0 4vw; */
-  margin: 3.8vw 4vw 4vw 4vw;
+  /* margin: 3.8vw 4vw 4vw 4vw; */
+  /* margin: 0 8vh 8vh 8vh; */
+  margin: 7vh 8vh 8vh 8vh;
+  /* height: 100%; */
+`;
+
+const MainLayout = styled.div`
   height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  ${(props: { pathname: string }) =>
+    props.pathname === '/' &&
+    css`
+      overflow: hidden;
+    `}
+
+  ${(props: { pathname: string }) =>
+    props.pathname === '/whoweare' &&
+    css`
+      background-color: white;
+      color: black;
+      width: 3500px;
+      overflow-y: hidden;
+    `}
 `;
 
 const NavDisconnected = withNav(Disconnected);
@@ -28,14 +57,25 @@ const NavAnxious = withNav(Anxious);
 const NavAbout = withNav(About);
 
 const App = () => {
+  const [state, setState] = React.useState({ step: 0 });
   const [showCursor, setShowCursor] = React.useState(true);
+
+  const { pathname } = useLocation();
+
+  const stepIncrement = () => {
+    setState((state) => ({ ...state, step: state.step + 1 }));
+  };
   return (
-    <HashRouter basename='/'>
+    <MainLayout id='main-layout' pathname={pathname}>
       <Cursor showCursor={showCursor} />
 
       <Switch>
         <Route exact path='/'>
-          <Home setShowCursor={setShowCursor} />
+          <Home
+            state={state}
+            stepIncrement={stepIncrement}
+            setShowCursor={setShowCursor}
+          />
         </Route>
         <Route path='/disconnected'>
           <MainContainer>
@@ -58,7 +98,7 @@ const App = () => {
           </MainContainer>
         </Route>
       </Switch>
-    </HashRouter>
+    </MainLayout>
   );
 };
 export default App;

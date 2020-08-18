@@ -9,8 +9,10 @@ const Container = styled.div`
 
   .label {
     top: 0vh;
-    font-size: 1vw;
-    width: 600px;
+    font-size: 2.2vh;
+    /* width: 600px; */
+    width: 65vh;
+    /* flex: 0 1 500px; */
   }
 
   .first-left {
@@ -101,13 +103,6 @@ const Disconnected = () => {
         </div>
       </div>
       <div className='flex-item-2'>
-        {/* <p id='label' className='label'>
-          &emsp;Many of us are restricted to see out loved ones. The feelings of
-          isolation hit us in more places than the heart and head. Even though
-          technology enables us to connect with out family, friends and
-          colleagues regardless of where we are, but we can easily feel isolated
-          and disconnected without physical contract.
-        </p> */}
         <img
           className='images image-1 first-left-image'
           src='https://www.dropbox.com/s/hlvvtza3894b9z1/Disconnected%2001.jpg?dl=1'
@@ -129,10 +124,9 @@ const Disconnected = () => {
           nostalgic photography shows just how much we want to see our loved
           ones again.
         </p>
-
         <div
           className='image-box image-2 first-right-image'
-          style={{ marginTop: '32vh' }}
+          style={{ marginTop: '23vh' }}
         >
           <img
             className='images hover'

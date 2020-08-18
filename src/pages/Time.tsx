@@ -7,19 +7,20 @@ const Container = styled.div`
   position: relative;
 
   .title {
-    left: 2vw;
+    left: 4vh;
     margin-block-start: 0;
     margin-block-end: 0;
     text-align: center;
     z-index: 2;
-    font-size: 8vw;
+    font-size: 16vh;
     top: 0vh;
   }
 
   .label {
     margin-top: 40vh;
-    width: 600px;
-    font-size: 1vw;
+    /* width: 600px; */
+    width: 65vh;
+    font-size: 2vh;
   }
 
   .first-left-image {

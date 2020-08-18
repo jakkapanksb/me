@@ -5,11 +5,12 @@ import { StyledLink } from 'hoc/withNav';
 const Container = styled.div`
   display: flex;
   justify-content: space-around;
-  height: 100%;
-  font-size: 2vw;
+  /* height: 100%; */
+  font-size: 4vh;
   position: relative;
   margin-top: 38vh;
-  max-height: 100%;
+  /* max-height: 100%; */
+  flex-wrap: wrap;
 
   #myVideo {
     position: fixed;
@@ -22,7 +23,7 @@ const Container = styled.div`
 `;
 
 const Link = styled(StyledLink)`
-  font-size: 2vw;
+  font-size: 4vh;
   :hover {
     color: #2e47ff;
   }

@@ -4,29 +4,30 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
-  height: 98.2vh;
-  width: 210%;
+  /* height: 98.2vh; */
+  /* width: 210%; */
   flex-wrap: nowrap;
   justify-content: flex-start;
   color: black;
-  font-size: 5vh;
+  font-size: 4vh;
   background-color: white;
+  padding-top: 4vh;
 `;
 
 const FlexItem = styled.div`
-  margin: 0 3vw;
+  margin: 0 6vh;
 `;
 
 const FirstItem = styled(FlexItem)`
-  flex: 0 0 40vw;
+  flex: 0 0 600px;
 `;
 
 const SecondItem = styled(FlexItem)`
-  flex: 0 0 50vw;
+  flex: 0 0 600px;
 `;
 
 const NormalItem = styled(FlexItem)`
-  flex: 0 0 35vw;
+  flex: 0 0 400px;
   margin: 0;
   align-self: ${(props: { name: string | undefined }) =>
     props.name === 'blu' ? 'flex-end' : 'flex-start'};
@@ -47,19 +48,20 @@ const BluName = styled.p`
   font-size: 18vh;
   position: relative;
   top: -4vh;
-  left: -3vw;
+  left: -6vh;
 `;
 
 const EveName = styled.p`
   font-size: 18vh;
   position: relative;
-  margin-left: -45vw;
-  top: -16vh;
+  margin-left: -91.5vh;
+  top: -6vh;
 `;
 
 const About = () => {
   React.useEffect(() => {
     const container = document.getElementsByTagName('html')[0];
+    // const container = document.getElementById('main-layout');
     if (container) {
       const handleWheel = (e: WheelEvent) => {
         if (e.deltaY > 0) container.scrollLeft += 100;
@@ -73,7 +75,10 @@ const About = () => {
   }, []);
   return (
     <Container className='container'>
-      <NormalItem name='blu'>
+      <NormalItem
+        name='blu'
+        style={{ position: 'relative', top: '8vh', right: '8vh' }}
+      >
         <img
           className='blu'
           src='https://www.dropbox.com/s/dx23fdw7u3as95z/blu_main.jpg?dl=1'
@@ -85,7 +90,15 @@ const About = () => {
         <BluName>Blu</BluName>
       </NormalItem>
 
-      <NormalItem name='eve' style={{ marginLeft: '42vh' }}>
+      <NormalItem
+        name='eve'
+        style={{
+          marginLeft: '42vh',
+          position: 'relative',
+          bottom: '14vh',
+          marginRight: '32vh',
+        }}
+      >
         <img
           className='eve'
           src='https://www.dropbox.com/s/3iyfgfaylynnp8f/eve_main.jpg?dl=1'

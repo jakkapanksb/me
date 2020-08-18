@@ -6,6 +6,7 @@ const Cursor = styled.div<{ isCircle: boolean }>`
   position: absolute;
   pointer-events: none;
   z-index: 9999;
+  /* height: 5vh; */
 
   ${(props: { isCircle: boolean }) =>
     props.isCircle
@@ -20,7 +21,7 @@ const Cursor = styled.div<{ isCircle: boolean }>`
         `
       : css`
           color: white;
-          font-size: 2vw;
+          font-size: 4vh;
           white-space: nowrap;
         `}
 `;
@@ -50,8 +51,8 @@ const CursorParent = ({ showCursor }: { showCursor: boolean }) => {
     <Cursor
       isCircle={isCircle}
       style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
+        left: `${isCircle ? position.x : position.x - 270}px`,
+        top: `${isCircle ? position.y : position.y - 30}px`,
       }}
     >
       {isCircle ? null : 'Shit we have been through'}

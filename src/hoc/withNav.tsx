@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 
 export const StyledLink = styled(Link)`
@@ -7,12 +7,16 @@ export const StyledLink = styled(Link)`
   /* margin: 5px; */
   cursor: none;
   text-decoration: none;
-  font-size: 1vw;
+  font-size: 2vh;
 `;
 
 const MainLink = styled(StyledLink)`
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   :hover {
-    border-bottom: 1px #2e47ff solid;
+    border-bottom: 3px #2e47ff solid;
+    margin-bottom: -3px;
   }
 `;
 
@@ -22,6 +26,13 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+
+  ${(props: { pathname: string }) =>
+    props.pathname === '/whoweare' &&
+    css`
+      position: fixed;
+      width: 92%;
+    `}
 `;
 
 const LinkGroup = styled.span`
@@ -55,7 +66,7 @@ const withNav = <P extends object>(
   const isHome = pathname === '/';
   return (
     <>
-      <Nav>
+      <Nav pathname={pathname}>
         <MainLink to='/'>co-experiment</MainLink>
         {!isHome ? (
           <LinkGroup>

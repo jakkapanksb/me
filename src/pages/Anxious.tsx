@@ -12,15 +12,16 @@ const Container = styled.div`
 
   .title {
     text-align: left;
-    left: 30vw;
+    left: 60vh;
     top: 0vh;
     z-index: 2;
   }
 
   .label {
     margin-top: 33vh;
-    width: 600px;
-    font-size: 1vw;
+    /* width: 600px; */
+    width: 65vh;
+    font-size: 2vh;
   }
 
   .flex-item-2 > .image-box > .first-right {
