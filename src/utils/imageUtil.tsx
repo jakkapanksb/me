@@ -56,7 +56,11 @@ export const createHoveredImage = ({
   style,
 }: createHoveredImageProps): JSX.Element => {
   return (
-    <div className={`image-box ${createImagePositionClassName(position)}`}>
+    <div
+      className={`image-box ${createImagePositionClassName(position)}${
+        direction === 'vertical' ? ` vertical` : ''
+      }`}
+    >
       <img
         className={`images${className ? ` ${className}` : ''}`}
         src={src}

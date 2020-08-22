@@ -4,19 +4,45 @@ import styled from 'styled-components';
 const Container = styled.div`
   position: relative;
   .title {
-    top: 15vh;
+    top: 7.5vw;
   }
 
   .label {
-    top: 0vh;
-    font-size: 2.2vh;
-    /* width: 600px; */
-    width: 65vh;
-    /* flex: 0 1 500px; */
+    /* font-size: 2.2vh; */
+    /* font-size: 1.1vw; */
+    width: 70%;
   }
 
   .first-left {
-    margin-top: 107vh;
+    margin-top: 53vw;
+  }
+
+  .first-right-image {
+    margin-top: 2.5vw;
+  }
+
+  .second-right-image {
+    margin-top: 15vw;
+  }
+
+  .flex-item-1 > img,
+  .flex-item-2 > img,
+  .flex-item-1 > .image-box,
+  .flex-item-2 > .image-box {
+    max-width: 100%;
+    width: 90%;
+  }
+
+  .flex-item-1 > img.vertical,
+  .flex-item-2 > img.vertical,
+  .flex-item-1 > .image-box.vertical,
+  .flex-item-2 > .image-box.vertical {
+    max-width: 100%;
+    width: 70%;
+  }
+
+  .image-box > img {
+    width: 100%;
   }
 `;
 
@@ -65,11 +91,9 @@ const Disconnected = () => {
           Isolation
         </p>
         <img
-          className='images image-2 first-left'
+          className='images image-2 first-left vertical'
           src='https://www.dropbox.com/s/kj931zhnfyvcnad/Disconnected%2002.jpg?dl=1'
           alt='Disconnected-02'
-          width={600}
-          height={800}
         />
         <video
           autoPlay
@@ -77,38 +101,38 @@ const Disconnected = () => {
           className='images image-1'
           width={800}
           height={600}
-          style={{ marginTop: '60vh' }}
+          style={{ marginTop: '28vw' }}
         >
           <source
             src='https://www.dropbox.com/s/nmwost8czpsc4gb/Disconnected%2004.mp4?dl=1'
             type='video/mp4'
           />
         </video>
-        <div className='image-box image-2' style={{ marginTop: '30vh' }}>
+        <div
+          className='image-box image-2 vertical'
+          style={{ marginTop: '15vw' }}
+        >
           <img
             className='images'
             src='https://www.dropbox.com/s/b6q8hlvo548r4y8/Disconnected%2006.png?dl=1'
             alt='Disconnected-06'
-            width={600}
-            height={800}
           />
           <img
             className='images hover'
             src='https://www.dropbox.com/s/u9dlkh6q7iu77fo/Disconnected%2006_hover.png?dl=1'
             alt='Disconnected-06'
             title='Disconnected-06'
-            width={600}
-            height={800}
           />
         </div>
       </div>
       <div className='flex-item-2'>
         <img
-          className='images image-1 first-left-image'
+          // className='images image-1 first-right-image'
+          className='first-right-image image-1'
           src='https://www.dropbox.com/s/hlvvtza3894b9z1/Disconnected%2001.jpg?dl=1'
           alt='Disconnected-01'
-          width={800}
-          height={600}
+          // width={800}
+          // height={600}
         />
         <p id='label' className='label'>
           &emsp;&emsp;&emsp;&emsp;&emsp;Many of us are restricted to see our
@@ -124,10 +148,7 @@ const Disconnected = () => {
           nostalgic photography shows just how much we want to see our loved
           ones again.
         </p>
-        <div
-          className='image-box image-2 first-right-image'
-          style={{ marginTop: '23vh' }}
-        >
+        <div className='image-box image-2 second-right-image'>
           <img
             className='images hover'
             src='https://www.dropbox.com/s/qtcnrxf1ix9p5r6/Disconnected%2003_hover.jpg?dl=1'
@@ -143,36 +164,34 @@ const Disconnected = () => {
             height={600}
           />
         </div>
-        <div className='image-box image-3'>
+        <div
+          className='image-box image-3 vertical'
+          style={{ marginTop: '5vw' }}
+        >
           <img
             className='images'
             src='https://www.dropbox.com/s/kiaucokh13nnhom/Disconnected%2005.jpg?dl=1'
             alt='Disconnected-05'
-            width={600}
-            height={800}
           />
           <img
             className='images hover'
             src='https://www.dropbox.com/s/lunv6jrrqxyd09i/Disconnected%2005_hover.jpg?dl=1'
             alt='Disconnected-05'
-            width={600}
-            height={800}
           />
         </div>
-        <div className='image-box image-1' style={{ marginTop: '5vh' }}>
+        <div
+          className='image-box image-1 vertical'
+          style={{ marginTop: '2.5vw' }}
+        >
           <img
             className='images'
             src='https://www.dropbox.com/s/f4ud04587hro140/Disconnected%2007.png?dl=1'
             alt='Disconnected-07'
-            width={600}
-            height={800}
           />
           <img
             className='images hover'
             src='https://www.dropbox.com/s/zxn0nr7k06ceyqj/Disconnected%2007_hover.jpg?dl=1'
             alt='Disconnected-07'
-            width={600}
-            height={800}
           />
         </div>
       </div>

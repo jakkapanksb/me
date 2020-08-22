@@ -12,20 +12,38 @@ const Container = styled.div`
 
   .title {
     text-align: left;
-    left: 60vh;
-    top: 0vh;
+    left: 30vw;
+    top: 0;
     z-index: 2;
   }
 
   .label {
-    margin-top: 33vh;
+    margin-top: 16vw;
     /* width: 600px; */
-    width: 65vh;
-    font-size: 2vh;
   }
 
   .flex-item-2 > .image-box > .first-right {
-    margin-top: 5vh;
+    margin-top: 2.5vw;
+  }
+
+  .flex-item-1 > img,
+  .flex-item-2 > img,
+  .flex-item-1 > .image-box,
+  .flex-item-2 > .image-box {
+    max-width: 100%;
+    width: 90%;
+  }
+
+  .flex-item-1 > img.vertical,
+  .flex-item-2 > img.vertical,
+  .flex-item-1 > .image-box.vertical,
+  .flex-item-2 > .image-box.vertical {
+    max-width: 100%;
+    width: 70%;
+  }
+
+  .image-box > img {
+    width: 100%;
   }
 `;
 
@@ -103,7 +121,7 @@ const Anxious = () => {
             'https://www.dropbox.com/s/rddohu4y2kvmckk/Anxious%2008.png?dl=1',
           alt: 'Anxious-08',
           direction: 'horizontal',
-          style: { marginTop: '50vh' },
+          style: { marginTop: '25vw' },
         })}
       </div>
       <div className='flex-item-2'>
@@ -125,7 +143,7 @@ const Anxious = () => {
           className='images image-1'
           width={800}
           height={600}
-          style={{ marginTop: '60vh' }}
+          style={{ marginTop: '30vw' }}
         >
           <source
             src='https://www.dropbox.com/s/i2vfldzru1z3o8z/Anxious%2003.mp4?dl=1'
@@ -140,7 +158,7 @@ const Anxious = () => {
           position: 'center',
           alt: 'Anxious-05',
           direction: 'vertical',
-          style: { marginTop: '60vh' },
+          style: { marginTop: '30vw' },
         })}
         {createImage({
           src:
@@ -148,7 +166,7 @@ const Anxious = () => {
           alt: 'Anxious-07',
           position: 'right',
           direction: 'horizontal',
-          style: { marginTop: '40vh' },
+          style: { marginTop: '20vw' },
         })}
       </div>
     </Container>

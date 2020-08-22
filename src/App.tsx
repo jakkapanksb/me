@@ -21,11 +21,11 @@ export type State = {
 };
 
 export const MainContainer = styled.div`
-  /* margin: 4vw 4vw 0 4vw; */
+  margin: ${(props: { pathname?: string }) =>
+    props.pathname !== '/whoweare' ? '3.5vw 4vw 4vw 4vw' : '7vh 8vh 8vh 8vh'};
   /* margin: 3.8vw 4vw 4vw 4vw; */
   /* margin: 0 8vh 8vh 8vh; */
-  margin: 7vh 8vh 8vh 8vh;
-  /* height: 100%; */
+  /* margin: 7vh 8vh 8vh 8vh; */
 `;
 
 const MainLayout = styled.div`
@@ -93,7 +93,7 @@ const App = () => {
           </MainContainer>
         </Route>
         <Route path='/whoweare'>
-          <MainContainer>
+          <MainContainer pathname={pathname}>
             <NavAbout />
           </MainContainer>
         </Route>
