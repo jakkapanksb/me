@@ -32,16 +32,16 @@ const NormalItem = styled(FlexItem)`
   align-self: ${(props: { name: string | undefined }) =>
     props.name === 'blu' ? 'flex-end' : 'flex-start'};
   display: flex;
-
+  /* 
   img.blu:hover {
     cursor: url(https://www.dropbox.com/s/dzzg5urlxj6pxek/blu_hover128x128.jpg?dl=1),
       none;
-  }
+  } */
 
-  img.eve:hover {
+  /* img.eve:hover {
     cursor: url(https://www.dropbox.com/s/n9i6g0yy53scseq/eve_hover128x128.jpg?dl=1),
       none;
-  }
+  } */
 `;
 
 const BluName = styled.p`
@@ -59,6 +59,9 @@ const EveName = styled.p`
 `;
 
 const About = () => {
+  const [bluPosition, setBluPosition] = React.useState({ x: 0, y: 0 });
+  const [evePosition, setEvePosition] = React.useState({ x: 0, y: 0 });
+
   React.useEffect(() => {
     const container = document.getElementsByTagName('html')[0];
     // const container = document.getElementById('main-layout');
@@ -80,11 +83,28 @@ const About = () => {
         style={{ position: 'relative', top: '8vh', right: '8vh' }}
       >
         <img
+          src='https://www.dropbox.com/s/dxanp0t3vphs3e8/blu_hover.jpg?dl=1'
+          alt='Blu'
+          style={{
+            display:
+              bluPosition.x === 0 && bluPosition.y === 0 ? 'none' : undefined,
+            position: 'absolute',
+            width: '30vh',
+            left: bluPosition.x + 10,
+            top: bluPosition.y - 230,
+            zIndex: 1,
+          }}
+        />
+        <img
           className='blu'
           src='https://www.dropbox.com/s/dx23fdw7u3as95z/blu_main.jpg?dl=1'
           alt='Blu'
           width={600}
           height={'auto'}
+          onMouseMove={(e) => setBluPosition({ x: e.pageX, y: e.pageY })}
+          onMouseLeave={() => {
+            setBluPosition({ x: 0, y: 0 });
+          }}
           style={{ alignSelf: 'flex-end' }}
         />
         <BluName>Blu</BluName>
@@ -100,11 +120,30 @@ const About = () => {
         }}
       >
         <img
+          src='https://www.dropbox.com/s/1ia0iqpqonrs8kd/eve_hover.jpg?dl=1'
+          alt='Eve'
+          style={{
+            display:
+              evePosition.x === 0 && evePosition.y === 0 ? 'none' : undefined,
+            position: 'absolute',
+            width: '30vh',
+            left: evePosition.x - 1370,
+            top: evePosition.y + 40,
+            zIndex: 1,
+          }}
+        />
+        <img
           className='eve'
           src='https://www.dropbox.com/s/3iyfgfaylynnp8f/eve_main.jpg?dl=1'
           alt='Eve'
           width={600}
           height={'auto'}
+          onMouseMove={(e) => {
+            setEvePosition({ x: e.pageX, y: e.pageY });
+          }}
+          onMouseLeave={() => {
+            setEvePosition({ x: 0, y: 0 });
+          }}
         />
         <EveName>Eve</EveName>
       </NormalItem>
@@ -127,7 +166,6 @@ const About = () => {
           Co-experiment is an experiment of expressions in the new-normal world
           through design.
         </p>
-        <br />
         <br />
         <p>
           Contact <br />
