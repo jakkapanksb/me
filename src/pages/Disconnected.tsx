@@ -63,31 +63,37 @@ export function moveSlowly(
     (parseInt(element.style.top) < minRange && deltaY < 0)
   )
     return;
-  if (deltaY > 0) element.style.top = `${parseInt(element.style.top) + 2}vh`;
-  else element.style.top = `${parseInt(element.style.top) - 2}vh`;
+  if (deltaY > 0) element.style.top = `${parseInt(element.style.top) - 2}vh`;
+  else element.style.top = `${parseInt(element.style.top) + 2}vh`;
 }
 
 const Disconnected = () => {
-  // React.useEffect(() => {
-  //   function handleWheel(e: WheelEvent) {
-  //     const title = document.getElementById('title');
-  //     const label = document.getElementById('label');
-  //     if (label) moveSlowly(e.deltaY, 0, label);
-  //     if (title) moveSlowly(e.deltaY, 15, title);
-  //   }
-  //   const container = document.getElementById('container');
-  //   if (container) {
-  //     container.addEventListener('wheel', handleWheel);
-  //     return () => {
-  //       container.removeEventListener('wheel', handleWheel);
-  //     };
-  //   }
-  // }, []);
+  const titleRef = React.useRef(null);
+  const [offset, setOffset] = React.useState(0);
+
+  const transformOffset = (offset * -1) / 30;
+
+  React.useEffect(() => {
+    window.onscroll = () => {
+      setOffset(window.pageYOffset);
+    };
+
+    return () => {
+      window.onscroll = null;
+    };
+  }, []);
 
   return (
     <Container id='container' className='flex-container'>
       <div className='flex-item-1'>
-        <p id='title' className='title'>
+        <p
+          id='title'
+          className='title'
+          ref={titleRef}
+          style={{
+            transform: `translate3d(0px, ${transformOffset}%, 0px)`,
+          }}
+        >
           Isolation
         </p>
         <img
@@ -134,7 +140,13 @@ const Disconnected = () => {
           // width={800}
           // height={600}
         />
-        <p id='label' className='label'>
+        <p
+          id='label'
+          className='label'
+          style={{
+            transform: `translate3d(0px, ${transformOffset}%, 0px)`,
+          }}
+        >
           &emsp;&emsp;&emsp;&emsp;&emsp;Many of us are restricted to see our
           loved ones. The feelings of isolation hit us in more places than the
           heart and head. We may feel lonelier even though technology enables us
