@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
-  /* height: 98.2vh; */
+  height: 91%;
   /* width: 210%; */
   flex-wrap: nowrap;
   justify-content: flex-start;
@@ -19,15 +19,16 @@ const FlexItem = styled.div`
 `;
 
 const FirstItem = styled(FlexItem)`
-  flex: 0 0 600px;
+  flex: 0 0 16em;
 `;
 
 const SecondItem = styled(FlexItem)`
-  flex: 0 0 600px;
+  flex: 0 0 16em;
+  padding-right: 5vh;
 `;
 
 const NormalItem = styled(FlexItem)`
-  flex: 0 0 400px;
+  flex: 0 0;
   margin: 0;
   align-self: ${(props: { name: string | undefined }) =>
     props.name === 'blu' ? 'flex-end' : 'flex-start'};
@@ -63,12 +64,12 @@ const About = () => {
   const [evePosition, setEvePosition] = React.useState({ x: 0, y: 0 });
 
   React.useEffect(() => {
-    const container = document.getElementsByTagName('html')[0];
-    // const container = document.getElementById('main-layout');
+    // const container = document.getElementsByTagName('html')[0];
+    const container = document.getElementById('main-layout');
     if (container) {
       const handleWheel = (e: WheelEvent) => {
-        if (e.deltaY > 0) container.scrollLeft += 100;
-        else container.scrollLeft -= 100;
+        if (e.deltaY > 0) container.scrollLeft += e.deltaY;
+        else if (e.deltaY < 0) container.scrollLeft += e.deltaY;
       };
       container.addEventListener('wheel', handleWheel);
       return () => {
@@ -80,7 +81,7 @@ const About = () => {
     <Container className='container'>
       <NormalItem
         name='blu'
-        style={{ position: 'relative', top: '8vh', right: '8vh' }}
+        style={{ position: 'relative', bottom: '0vh', left: '-8vh' }}
       >
         <img
           src='https://www.dropbox.com/s/dxanp0t3vphs3e8/blu_hover.jpg?dl=1'
@@ -88,10 +89,10 @@ const About = () => {
           style={{
             display:
               bluPosition.x === 0 && bluPosition.y === 0 ? 'none' : undefined,
-            position: 'absolute',
+            position: 'fixed',
             width: '30vh',
-            left: bluPosition.x + 10,
-            top: bluPosition.y - 230,
+            left: bluPosition.x,
+            top: bluPosition.y + 10,
             zIndex: 1,
           }}
         />
@@ -99,13 +100,12 @@ const About = () => {
           className='blu'
           src='https://www.dropbox.com/s/dx23fdw7u3as95z/blu_main.jpg?dl=1'
           alt='Blu'
-          width={600}
           height={'auto'}
           onMouseMove={(e) => setBluPosition({ x: e.pageX, y: e.pageY })}
           onMouseLeave={() => {
             setBluPosition({ x: 0, y: 0 });
           }}
-          style={{ alignSelf: 'flex-end' }}
+          style={{ alignSelf: 'flex-end', width: '60vh' }}
         />
         <BluName>Blu</BluName>
       </NormalItem>
@@ -116,7 +116,7 @@ const About = () => {
           marginLeft: '42vh',
           position: 'relative',
           bottom: '14vh',
-          marginRight: '32vh',
+          marginRight: '64vh',
         }}
       >
         <img
@@ -125,10 +125,10 @@ const About = () => {
           style={{
             display:
               evePosition.x === 0 && evePosition.y === 0 ? 'none' : undefined,
-            position: 'absolute',
+            position: 'fixed',
             width: '30vh',
-            left: evePosition.x - 1370,
-            top: evePosition.y + 40,
+            left: evePosition.x,
+            top: evePosition.y + 10,
             zIndex: 1,
           }}
         />
@@ -136,7 +136,6 @@ const About = () => {
           className='eve'
           src='https://www.dropbox.com/s/3iyfgfaylynnp8f/eve_main.jpg?dl=1'
           alt='Eve'
-          width={600}
           height={'auto'}
           onMouseMove={(e) => {
             setEvePosition({ x: e.pageX, y: e.pageY });
@@ -144,6 +143,7 @@ const About = () => {
           onMouseLeave={() => {
             setEvePosition({ x: 0, y: 0 });
           }}
+          style={{ width: '60vh' }}
         />
         <EveName>Eve</EveName>
       </NormalItem>

@@ -29,9 +29,14 @@ const Container = styled.div`
   }
 `;
 
+const startCountingDate = '03/09/2020';
+
 const diffDays = Math.ceil(
-  (new Date().getTime() - new Date('03/09/2020').getTime()) / (1000 * 3600 * 24)
+  (new Date().getTime() - new Date(startCountingDate).getTime()) /
+    (1000 * 3600 * 24)
 );
+
+const interval = ((150 / diffDays) * 1000) / 60;
 
 const Home = ({
   setShowCursor,
@@ -42,11 +47,6 @@ const Home = ({
   state: State;
   stepIncrement: () => void;
 }) => {
-  // const [step, setStep] = React.useState(
-  //   localStorage.getItem('step')
-  //     ? parseInt(sessionStorage.getItem('step') ?? '0')
-  //     : 0
-  // );
   const [count, setCount] = React.useState(0);
   const transitions = useTransition(step, null, {
     from: { position: 'absolute', opacity: 0 },
@@ -54,29 +54,26 @@ const Home = ({
     leave: { opacity: 0 },
   });
 
-  const counter = count < 100 ? <p className='counter'>{count}</p> : null;
-
   React.useEffect(() => {
     if (step === 0) setShowCursor(false);
     else if (step === 2) {
       setShowCursor(true);
-      // sessionStorage.setItem('step', '2');
     }
     if (step < 2) {
       const increment = () => {
         stepIncrement();
       };
-      const interval = setInterval(increment, 3000);
+      const intervalId = setInterval(increment, 3000);
       return () => {
-        clearInterval(interval);
+        clearInterval(intervalId);
       };
     }
   }, [step, stepIncrement, setShowCursor]);
 
   React.useEffect(() => {
     const id = setInterval(() => {
-      setCount((count) => (count < 100 ? count + 1 : count));
-    }, 60);
+      setCount((count) => (count < diffDays ? count + 1 : count));
+    }, interval);
     return () => {
       clearInterval(id);
     };
@@ -88,18 +85,16 @@ const Home = ({
         item === 0 ? (
           <Container key={key}>
             <animated.p style={props}>
-              We've been in lockdown for {diffDays} days
+              We've been in lockdown for {count} days
             </animated.p>
-            {counter}
           </Container>
         ) : item === 1 ? (
           <Container key={key}>
             <animated.p style={props}>How are you hanging in there?</animated.p>
-            {counter}
           </Container>
         ) : (
           <MainContainer key={key}>
-            <NavContent />
+            <NavContent setShowCursor={setShowCursor} />
           </MainContainer>
         )
       )}

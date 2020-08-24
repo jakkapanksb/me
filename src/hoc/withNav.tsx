@@ -23,6 +23,12 @@ const MainLink = styled(StyledLink)`
     css`
       font-size: 2vh;
     `}
+
+  ${(props: { pathname: string }) =>
+    props.pathname === '/' &&
+    css`
+      cursor: pointer;
+    `}
 `;
 
 const Nav = styled.nav`
@@ -46,15 +52,44 @@ const LinkGroup = styled.span`
   }
 `;
 
-const withNav = <P extends object>(
+const withNav = <
+  P extends object & {
+    setShowCursor?: React.Dispatch<React.SetStateAction<boolean>>;
+  }
+>(
   WrappedComponent: React.ComponentType<P>
 ): React.FC<P> => (props) => {
   const { pathname } = useLocation();
   const isHome = pathname === '/';
+  const { setShowCursor } = props;
+
+  const handleMouseEnter = () => {
+    if (setShowCursor && pathname === '/') {
+      setShowCursor(false);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (setShowCursor && pathname === '/') {
+      setShowCursor(true);
+    }
+  };
+
+  const handleClick = () => {
+    if (setShowCursor && pathname === '/') {
+      setShowCursor(true);
+    }
+  };
+
   return (
     <>
       <Nav pathname={pathname}>
-        <MainLink pathname={pathname} to='/'>
+        <MainLink
+          pathname={pathname}
+          to='/'
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           co-experiment
         </MainLink>
         {!isHome ? (
@@ -70,7 +105,13 @@ const withNav = <P extends object>(
             </MainLink>
           </LinkGroup>
         ) : null}
-        <MainLink pathname={pathname} to='/whoweare'>
+        <MainLink
+          pathname={pathname}
+          to='/whoweare'
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
+        >
           who we are
         </MainLink>
       </Nav>

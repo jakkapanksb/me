@@ -26,10 +26,27 @@ const Link = styled(StyledLink)`
   font-size: 4vh;
   :hover {
     color: #2e47ff;
+    cursor: pointer;
   }
 `;
 
-const HomeContent = () => {
+const HomeContent = ({
+  setShowCursor,
+}: {
+  setShowCursor: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const handleMouseEnter = () => {
+    setShowCursor(false);
+  };
+
+  const handleMouseLeave = () => {
+    setShowCursor(true);
+  };
+
+  const handleClick = () => {
+    setShowCursor(true);
+  };
+
   return (
     <Container>
       <video autoPlay muted loop id='myVideo'>
@@ -38,9 +55,30 @@ const HomeContent = () => {
           type='video/mp4'
         />
       </video>
-      <Link to='/disconnected'>Isolation</Link>
-      <Link to='/time'>Lost track of time</Link>
-      <Link to='/anxious'>Anxiety</Link>
+      <Link
+        to='/disconnected'
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+      >
+        Isolation
+      </Link>
+      <Link
+        to='/time'
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+      >
+        Lost track of time
+      </Link>
+      <Link
+        to='/anxious'
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+      >
+        Anxiety
+      </Link>
     </Container>
   );
 };

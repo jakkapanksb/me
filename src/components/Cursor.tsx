@@ -2,8 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { useLocation } from 'react-router-dom';
 
-const Cursor = styled.div<{ isCircle: boolean }>`
-  position: absolute;
+const Cursor = styled.div<{ isCircle: boolean; isAbout: boolean }>`
+  position: ${(props) => (props.isAbout ? 'fixed' : 'absolute')};
   pointer-events: none;
   z-index: 9999;
   /* height: 5vh; */
@@ -21,7 +21,7 @@ const Cursor = styled.div<{ isCircle: boolean }>`
         `
       : css`
           color: white;
-          font-size: 4vh;
+          font-size: 2vw;
           white-space: nowrap;
         `}
 `;
@@ -29,8 +29,13 @@ const Cursor = styled.div<{ isCircle: boolean }>`
 const CursorParent = ({ showCursor }: { showCursor: boolean }) => {
   const { pathname } = useLocation();
   const [position, setPosition] = React.useState({ x: 0, y: 0 });
+  const cursorRef = React.useRef<HTMLDivElement>(null);
 
   const isCircle = pathname !== '/';
+  const isAbout = pathname === '/whoweare';
+
+  const offsetX = (cursorRef?.current?.clientWidth ?? 0) / 2;
+  const offsetY = (cursorRef?.current?.clientHeight ?? 0) / 2;
 
   React.useEffect(() => {
     const onMouseMove = (e: MouseEvent) => {
@@ -50,10 +55,12 @@ const CursorParent = ({ showCursor }: { showCursor: boolean }) => {
   return showCursor ? (
     <Cursor
       isCircle={isCircle}
+      isAbout={isAbout}
       style={{
-        left: `${isCircle ? position.x : position.x - 270}px`,
-        top: `${isCircle ? position.y : position.y - 30}px`,
+        left: `${isCircle ? position.x : position.x - offsetX}px`,
+        top: `${isCircle ? position.y : position.y - offsetY}px`,
       }}
+      ref={cursorRef}
     >
       {isCircle ? null : 'Shit we have been through'}
     </Cursor>

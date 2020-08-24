@@ -23,7 +23,12 @@ export type State = {
 export const MainContainer = styled.div`
   margin: ${(props: { pathname?: string }) =>
     props.pathname !== '/whoweare' ? '3.5vw 4vw 4vw 4vw' : '7vh 8vh 8vh 8vh'};
-  /* margin: 3.8vw 4vw 4vw 4vw; */
+
+  ${(props: { pathname?: string }) =>
+    props.pathname === '/whoweare' &&
+    css`
+      height: 100%;
+    `}/* margin: 3.8vw 4vw 4vw 4vw; */
   /* margin: 0 8vh 8vh 8vh; */
   /* margin: 7vh 8vh 8vh 8vh; */
 `;
@@ -46,7 +51,8 @@ const MainLayout = styled.div`
     css`
       background-color: white;
       color: black;
-      width: 3500px;
+      /* width: 3500px; */
+      /* width: 200%; */
       overflow-y: hidden;
     `}
 `;
@@ -62,9 +68,10 @@ const App = () => {
 
   const { pathname } = useLocation();
 
-  const stepIncrement = () => {
+  const stepIncrement = React.useCallback(() => {
     setState((state) => ({ ...state, step: state.step + 1 }));
-  };
+  }, [setState]);
+
   return (
     <MainLayout id='main-layout' pathname={pathname}>
       <Cursor showCursor={showCursor} />
