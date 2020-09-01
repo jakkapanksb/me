@@ -101,7 +101,7 @@ const App = () => {
         </Route>
         <Route path='/whoweare'>
           <MainContainer pathname={pathname}>
-            <NavAbout />
+            <NavAbout setShowCursor={setShowCursor} />
           </MainContainer>
         </Route>
       </Switch>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { createImage, createHoveredImage } from 'utils/imageUtil';
+import { useParallax } from 'hooks/useParallax';
 // import { moveSlowly } from './Disconnected';
 
 const Container = styled.div`
@@ -50,36 +51,15 @@ const Container = styled.div`
 const Anxious = () => {
   const titleRef = React.useRef<HTMLParagraphElement>(null);
   const labelRef = React.useRef<HTMLParagraphElement>(null);
-
-  // React.useEffect(() => {
-  //   function handleWheel(e: WheelEvent) {
-  //     if (labelRef.current)
-  //       moveSlowly(e.deltaY, 0, labelRef.current, {
-  //         minRange: 0,
-  //         maxRange: 20,
-  //       });
-  //     if (titleRef.current)
-  //       moveSlowly(e.deltaY, 40, titleRef.current, {
-  //         minRange: 0,
-  //         maxRange: 20,
-  //       });
-  //   }
-  //   const container = document.getElementById('container');
-  //   if (container) {
-  //     container.addEventListener('wheel', handleWheel);
-  //     return () => {
-  //       container.removeEventListener('wheel', handleWheel);
-  //     };
-  //   }
-  // }, []);
+  const { parallaxStyles } = useParallax(3);
 
   return (
     <Container id='container' className='flex-container'>
       <div className='flex-item-1'>
-        <p className='title' ref={titleRef}>
+        <p className='title' style={parallaxStyles} ref={titleRef}>
           Anxiety
         </p>
-        <p className='label image-2' ref={labelRef}>
+        <p className='label image-2' style={parallaxStyles} ref={labelRef}>
           &emsp;&emsp;&emsp;&emsp;&emsp;Uncertainty is all around us, never more
           so than today. It leaves us feeling anxious, stressed, and powerless
           whether when you are out for grocery shopping or thinking over the

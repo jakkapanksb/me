@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useParallax } from 'hooks/useParallax';
 
 const Container = styled.div`
   position: relative;
@@ -69,31 +70,12 @@ export function moveSlowly(
 
 const Disconnected = () => {
   const titleRef = React.useRef(null);
-  const [offset, setOffset] = React.useState(0);
-
-  const transformOffset = (offset * -1) / 30;
-
-  React.useEffect(() => {
-    window.onscroll = () => {
-      setOffset(window.pageYOffset);
-    };
-
-    return () => {
-      window.onscroll = null;
-    };
-  }, []);
+  const { parallaxStyles } = useParallax();
 
   return (
     <Container id='container' className='flex-container'>
       <div className='flex-item-1'>
-        <p
-          id='title'
-          className='title'
-          ref={titleRef}
-          style={{
-            transform: `translate3d(0px, ${transformOffset}%, 0px)`,
-          }}
-        >
+        <p id='title' className='title' ref={titleRef} style={parallaxStyles}>
           Isolation
         </p>
         <img
@@ -140,13 +122,7 @@ const Disconnected = () => {
           // width={800}
           // height={600}
         />
-        <p
-          id='label'
-          className='label'
-          style={{
-            transform: `translate3d(0px, ${transformOffset}%, 0px)`,
-          }}
-        >
+        <p id='label' className='label' style={parallaxStyles}>
           &emsp;&emsp;&emsp;&emsp;&emsp;Many of us are restricted to see our
           loved ones. The feelings of isolation hit us in more places than the
           heart and head. We may feel lonelier even though technology enables us

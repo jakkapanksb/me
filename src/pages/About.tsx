@@ -59,7 +59,11 @@ const EveName = styled.p`
   top: -6vh;
 `;
 
-const About = () => {
+const About = ({
+  setShowCursor,
+}: {
+  setShowCursor: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [bluPosition, setBluPosition] = React.useState({ x: 0, y: 0 });
   const [evePosition, setEvePosition] = React.useState({ x: 0, y: 0 });
 
@@ -170,7 +174,16 @@ const About = () => {
         <p>
           Contact <br />
           blueve.design@gmail.com <br />
-          Instagram @co.experiments
+          Instagram{' '}
+          <a
+            href='https://www.instagram.com/co.experiments/'
+            target='blank'
+            onMouseEnter={() => setShowCursor(false)}
+            onMouseLeave={() => setShowCursor(true)}
+            style={{ color: 'black' }}
+          >
+            @co.experiments
+          </a>
         </p>
       </SecondItem>
     </Container>

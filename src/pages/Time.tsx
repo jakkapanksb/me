@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { createImage, createHoveredImage } from 'utils/imageUtil';
+import { useParallax } from 'hooks/useParallax';
 // import { moveSlowly } from './Disconnected';
 
 const Container = styled.div`
@@ -55,25 +56,11 @@ const Container = styled.div`
 const Time = () => {
   const titleRef = React.useRef<HTMLParagraphElement>(null);
   const labelRef = React.useRef<HTMLParagraphElement>(null);
-
-  // React.useEffect(() => {
-  //   function handleWheel(e: WheelEvent) {
-  //     if (labelRef.current) moveSlowly(e.deltaY, 0, labelRef.current);
-  //     if (titleRef.current) moveSlowly(e.deltaY, 0, titleRef.current);
-  //   }
-  //   const container = document.getElementById('container');
-  //   if (container) {
-  //     container.addEventListener('wheel', handleWheel);
-  //     return () => {
-  //       container.removeEventListener('wheel', handleWheel);
-  //     };
-  //   }
-  // }, []);
-
+  const { parallaxStyles } = useParallax(2);
   return (
     <Container id='container' className='flex-container'>
       <div className='flex-item-1'>
-        <p id='title' className='title' ref={titleRef}>
+        <p id='title' className='title' style={parallaxStyles} ref={titleRef}>
           Lost track of time
         </p>
         <div className='image-box image-2 vertical'>
@@ -126,7 +113,7 @@ const Time = () => {
         })}
       </div>
       <div className='flex-item-2'>
-        <p id='label' className='label' ref={labelRef}>
+        <p id='label' className='label' style={parallaxStyles} ref={labelRef}>
           &emsp;&emsp;&emsp;&emsp;&emsp;If you ask yourself ‘What day is it’
           more often these days, you are not alone. Being stuck at home during
           the quarantine has distorted our sense of time. And when outdoor
