@@ -93,14 +93,14 @@ const Time = () => {
         <div className='image-box image-2 vertical'>
           <img
             className='images first-left-image'
-            src='https://www.dropbox.com/s/f4rnkswrwhlwpo0/Time%2001.jpg?dl=1'
+            src='https://www.dropbox.com/s/f4rnkswrwhlwpo0/Time%2001.jpg?raw=1'
             alt='Time-01'
             width={600}
             height={800}
           />
           <img
             className='images hover first-left-image'
-            src='https://www.dropbox.com/s/3yu25vbiue2qhqq/Time%2001_hover.jpg?dl=1'
+            src='https://www.dropbox.com/s/3yu25vbiue2qhqq/Time%2001_hover.jpg?raw=1'
             alt='Time-01'
             width={600}
             height={800}
@@ -109,14 +109,14 @@ const Time = () => {
         <div className='image-box image-1 vertical time-3'>
           <img
             className='images'
-            src='https://www.dropbox.com/s/uwx6wlrg46pz9o9/Time%2003.jpg?dl=1'
+            src='https://www.dropbox.com/s/uwx6wlrg46pz9o9/Time%2003.jpg?raw=1'
             alt='Time-03'
             width={600}
             height={800}
           />
           <img
             className='images hover'
-            src='https://www.dropbox.com/s/2yqxc2k8rspcbk0/Time%2003_hover.jpg?dl=1'
+            src='https://www.dropbox.com/s/2yqxc2k8rspcbk0/Time%2003_hover.jpg?raw=1'
             alt='Time-03'
             width={600}
             height={800}
@@ -124,7 +124,7 @@ const Time = () => {
         </div>
         {createImage({
           position: 'right',
-          src: 'https://www.dropbox.com/s/l5unjfkwpcy2l4c/Time%2005.jpg?dl=1',
+          src: 'https://www.dropbox.com/s/l5unjfkwpcy2l4c/Time%2005.jpg?raw=1',
           alt: 'Time-05',
           direction: 'horizontal',
           className: 'time-5',
@@ -133,7 +133,7 @@ const Time = () => {
         {createImage({
           className: 'vertical',
           position: 'left',
-          src: 'https://www.dropbox.com/s/ml944gj4j70bn3g/Time%2007.jpg?dl=1',
+          src: 'https://www.dropbox.com/s/ml944gj4j70bn3g/Time%2007.jpg?raw=1',
           alt: 'Time-07',
         })}
       </div>
@@ -159,28 +159,28 @@ const Time = () => {
           height={600}
         >
           <source
-            src='https://www.dropbox.com/s/ufgh7s60fl2ivlw/Time%2002.mp4?dl=1'
+            src='https://www.dropbox.com/s/ufgh7s60fl2ivlw/Time%2002.mp4?raw=1'
             type='video/mp4'
           />
         </video>
         <img
           className='images image-3 vertical'
-          src='https://www.dropbox.com/s/i6elpc554esb5h0/Time%2004.jpg?dl=1'
+          src='https://www.dropbox.com/s/i6elpc554esb5h0/Time%2004.jpg?raw=1'
           alt='Time-04'
           width={600}
           height={800}
         />
         {createHoveredImage({
-          src: 'https://www.dropbox.com/s/pkz92tqmulefkmz/Time%2006.jpg?dl=1',
+          src: 'https://www.dropbox.com/s/pkz92tqmulefkmz/Time%2006.jpg?raw=1',
           hoveredSrc:
-            'https://www.dropbox.com/s/od604gv0g470ak4/Time%2006_hover.jpg?dl=1',
+            'https://www.dropbox.com/s/od604gv0g470ak4/Time%2006_hover.jpg?raw=1',
           position: 'left',
           alt: 'Time-06',
           direction: 'horizontal',
           className: 'time-6',
         })}
         {createImage({
-          src: 'https://www.dropbox.com/s/ou5d69cz5rh7qsc/Time%2008.png?dl=1',
+          src: 'https://www.dropbox.com/s/ou5d69cz5rh7qsc/Time%2008.png?raw=1',
           alt: 'Time-08',
           position: 'right',
           direction: 'horizontal',

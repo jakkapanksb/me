@@ -2,21 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useParallax } from 'hooks/useParallax';
 
-const path = '/images/Isolation';
-
-const sources = {
-  disconnectedOne: path + '/Disconnected 01.jpg',
-  disconnectedTwo: path + '/Disconnected 02.jpg',
-  disconnectedThree: path + '/Disconnected 03.png',
-  disconnectedThreeHover: path + '/Disconnected 03_hover.jpg',
-  disconnectedFour: path + '/Disconnected 04.mp4',
-  disconnectedFive: path + '/Disconnected 05.jpg',
-  disconnectedFiveHover: path + '/Disconnected 05-hover.jpg',
-  disconnectedSix: path + '/Disconnected 06.png',
-  disconnectedSeven: path + '/Disconnected 07.png',
-  disconnectedSevenHover: path + '/Disconnected 07_hover.jpg',
-};
-
 const Container = styled.div`
   position: relative;
   .title {
@@ -125,8 +110,7 @@ const Disconnected = () => {
         </p>
         <img
           className='images image-2 first-left vertical'
-          // src='https://www.dropbox.com/s/kj931zhnfyvcnad/Disconnected%2002.jpg?dl=1'
-          src={sources.disconnectedTwo}
+          src='https://www.dropbox.com/s/kj931zhnfyvcnad/Disconnected%2002.jpg?raw=1'
           alt='Disconnected-02'
         />
         <video
@@ -137,22 +121,19 @@ const Disconnected = () => {
           height={600}
         >
           <source
-            // src='https://www.dropbox.com/s/nmwost8czpsc4gb/Disconnected%2004.mp4?dl=1'
-            src={sources.disconnectedFour}
+            src='https://www.dropbox.com/s/nmwost8czpsc4gb/Disconnected%2004.mp4?raw=1'
             type='video/mp4'
           />
         </video>
         <div className='image-box image-2 vertical last-image'>
           <img
             className='images'
-            // src='https://www.dropbox.com/s/b6q8hlvo548r4y8/Disconnected%2006.png?dl=1'
-            src={sources.disconnectedSix}
+            src='https://www.dropbox.com/s/b6q8hlvo548r4y8/Disconnected%2006.png?raw=1'
             alt='Disconnected-06'
           />
           <img
             className='images hover'
-            // src='https://www.dropbox.com/s/u9dlkh6q7iu77fo/Disconnected%2006_hover.png?dl=1'
-            src={sources.disconnectedSix}
+            src='https://www.dropbox.com/s/u9dlkh6q7iu77fo/Disconnected%2006_hover.png?raw=1'
             alt='Disconnected-06'
             title='Disconnected-06'
           />
@@ -162,7 +143,7 @@ const Disconnected = () => {
         <img
           // className='images image-1 first-right-image'
           className='first-right-image image-1'
-          src={sources.disconnectedOne}
+          src='https://www.dropbox.com/s/hlvvtza3894b9z1/Disconnected%2001.jpg?raw=1'
           alt='Disconnected-01'
           // width={800}
           // height={600}
@@ -184,16 +165,14 @@ const Disconnected = () => {
         <div className='image-box image-2 second-right-image'>
           <img
             className='images hover'
-            // src='https://www.dropbox.com/s/qtcnrxf1ix9p5r6/Disconnected%2003_hover.jpg?dl=1'
-            src={sources.disconnectedThreeHover}
+            src='https://www.dropbox.com/s/qtcnrxf1ix9p5r6/Disconnected%2003_hover.jpg?raw=1'
             alt='Disconnceted-03'
             width={800}
             height={600}
           />
           <img
             className='images'
-            // src='https://www.dropbox.com/s/iffl5v4bhng3vzs/Disconnected%2003.png?dl=1'
-            src={sources.disconnectedThree}
+            src='https://www.dropbox.com/s/iffl5v4bhng3vzs/Disconnected%2003.png?raw=1'
             alt='Disconnected-03'
             width={800}
             height={600}
@@ -205,14 +184,12 @@ const Disconnected = () => {
         >
           <img
             className='images'
-            // src='https://www.dropbox.com/s/kiaucokh13nnhom/Disconnected%2005.jpg?dl=1'
-            src={sources.disconnectedFive}
+            src='https://www.dropbox.com/s/kiaucokh13nnhom/Disconnected%2005.jpg?raw=1'
             alt='Disconnected-05'
           />
           <img
             className='images hover'
-            // src='https://www.dropbox.com/s/lunv6jrrqxyd09i/Disconnected%2005_hover.jpg?dl=1'
-            src={sources.disconnectedFiveHover}
+            src='https://www.dropbox.com/s/lunv6jrrqxyd09i/Disconnected%2005_hover.jpg?raw=1'
             alt='Disconnected-05'
           />
         </div>
@@ -222,14 +199,12 @@ const Disconnected = () => {
         >
           <img
             className='images'
-            // src='https://www.dropbox.com/s/f4ud04587hro140/Disconnected%2007.png?dl=1'
-            src={sources.disconnectedSeven}
+            src='https://www.dropbox.com/s/f4ud04587hro140/Disconnected%2007.png?raw=1'
             alt='Disconnected-07'
           />
           <img
             className='images hover'
-            // src='https://www.dropbox.com/s/zxn0nr7k06ceyqj/Disconnected%2007_hover.jpg?dl=1'
-            src={sources.disconnectedSevenHover}
+            src='https://www.dropbox.com/s/zxn0nr7k06ceyqj/Disconnected%2007_hover.jpg?raw=1'
             alt='Disconnected-07'
           />
         </div>
