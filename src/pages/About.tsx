@@ -180,7 +180,7 @@ const About = ({
             target='blank'
             onMouseEnter={() => setShowCursor(false)}
             onMouseLeave={() => setShowCursor(true)}
-            style={{ color: 'black' }}
+            style={{ color: 'black', textDecoration: 'none' }}
           >
             @co.experiments
           </a>

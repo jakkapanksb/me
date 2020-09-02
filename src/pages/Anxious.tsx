@@ -21,6 +21,11 @@ const Container = styled.div`
   .label {
     margin-top: 16vw;
     /* width: 600px; */
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+      font-size: 1em;
+      margin-top: 15vw;
+    }
   }
 
   .flex-item-2 > .image-box > .first-right {
@@ -45,6 +50,36 @@ const Container = styled.div`
 
   .image-box > img {
     width: 100%;
+  }
+
+  .last-left-image {
+    @media only screen and (min-width: 600px) {
+      margin-top: 25vw;
+    }
+  }
+
+  video {
+    @media only screen and (min-width: 600px) {
+      margin-top: 30vw;
+    }
+  }
+
+  .image-5 {
+    @media only screen and (min-width: 600px) {
+      margin-top: 30vw;
+    }
+  }
+
+  .image-6 {
+    @media only screen and (min-width: 600px) {
+      margin-top: 20vw;
+    }
+  }
+
+  .flex-item-2 {
+    @media only screen and (max-width: 600px) {
+      margin-top: 10vw;
+    }
   }
 `;
 
@@ -96,12 +131,12 @@ const Anxious = () => {
           direction: 'horizontal',
         })}
         {createImage({
+          className: 'last-left-image',
           position: 'center',
           src:
             'https://www.dropbox.com/s/rddohu4y2kvmckk/Anxious%2008.png?dl=1',
           alt: 'Anxious-08',
           direction: 'horizontal',
-          style: { marginTop: '25vw' },
         })}
       </div>
       <div className='flex-item-2'>
@@ -123,7 +158,6 @@ const Anxious = () => {
           className='images image-1'
           width={800}
           height={600}
-          style={{ marginTop: '30vw' }}
         >
           <source
             src='https://www.dropbox.com/s/i2vfldzru1z3o8z/Anxious%2003.mp4?dl=1'
@@ -138,7 +172,7 @@ const Anxious = () => {
           position: 'center',
           alt: 'Anxious-05',
           direction: 'vertical',
-          style: { marginTop: '30vw' },
+          className: 'image-5',
         })}
         {createImage({
           src:
@@ -146,7 +180,7 @@ const Anxious = () => {
           alt: 'Anxious-07',
           position: 'right',
           direction: 'horizontal',
-          style: { marginTop: '20vw' },
+          className: 'image-6',
         })}
       </div>
     </Container>

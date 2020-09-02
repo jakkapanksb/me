@@ -25,6 +25,11 @@ const Container = styled.div`
     width: 70%;
     /* width: 600px; */
     /* width: 65vh; */
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+      margin-top: 10vw;
+      font-size: 1em;
+    }
   }
 
   .first-left-image {
@@ -50,6 +55,28 @@ const Container = styled.div`
 
   .image-box > img {
     width: 100%;
+  }
+
+  @media only screen and (min-width: 600px) {
+    .time-3 {
+      margin-top: 10vw;
+    }
+
+    .time-5 {
+      margin-top: 10vw;
+    }
+
+    video {
+      margin-top: 14vw;
+    }
+
+    .time-6 {
+      margin-top: 30vw;
+    }
+
+    .time-8 {
+      margin-top: 15vw;
+    }
   }
 `;
 
@@ -79,10 +106,7 @@ const Time = () => {
             height={800}
           />
         </div>
-        <div
-          className='image-box image-1 vertical'
-          style={{ marginTop: '10vw' }}
-        >
+        <div className='image-box image-1 vertical time-3'>
           <img
             className='images'
             src='https://www.dropbox.com/s/uwx6wlrg46pz9o9/Time%2003.jpg?dl=1'
@@ -103,7 +127,8 @@ const Time = () => {
           src: 'https://www.dropbox.com/s/l5unjfkwpcy2l4c/Time%2005.jpg?dl=1',
           alt: 'Time-05',
           direction: 'horizontal',
-          style: { marginTop: '10vw', position: 'relative' },
+          className: 'time-5',
+          style: { position: 'relative' },
         })}
         {createImage({
           className: 'vertical',
@@ -132,7 +157,6 @@ const Time = () => {
           className='images image-1'
           width={800}
           height={600}
-          style={{ marginTop: '14vw' }}
         >
           <source
             src='https://www.dropbox.com/s/ufgh7s60fl2ivlw/Time%2002.mp4?dl=1'
@@ -153,14 +177,15 @@ const Time = () => {
           position: 'left',
           alt: 'Time-06',
           direction: 'horizontal',
-          style: { marginTop: '30vw' },
+          className: 'time-6',
         })}
         {createImage({
           src: 'https://www.dropbox.com/s/ou5d69cz5rh7qsc/Time%2008.png?dl=1',
           alt: 'Time-08',
           position: 'right',
           direction: 'horizontal',
-          style: { marginTop: '15vw', position: 'relative' },
+          className: 'time-8',
+          style: { position: 'relative' },
         })}
       </div>
     </Container>

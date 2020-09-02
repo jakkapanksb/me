@@ -7,6 +7,10 @@ export const StyledLink = styled(Link)`
   cursor: none;
   text-decoration: none;
   font-size: 1vw;
+
+  @media only screen and (max-width: 600px) {
+    font-size: 0.5em;
+  }
 `;
 
 const MainLink = styled(StyledLink)`
