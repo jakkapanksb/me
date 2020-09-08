@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useLocation } from 'react-router-dom';
+import { isMobile } from 'react-device-detect';
 
 const Cursor = styled.div<{ isCircle: boolean; isAbout: boolean }>`
   position: ${(props) => (props.isAbout ? 'fixed' : 'absolute')};
@@ -52,7 +53,7 @@ const CursorParent = ({ showCursor }: { showCursor: boolean }) => {
     return () => removeEventListeners();
   }, []);
 
-  return showCursor ? (
+  return showCursor && !isMobile ? (
     <Cursor
       isCircle={isCircle}
       isAbout={isAbout}
