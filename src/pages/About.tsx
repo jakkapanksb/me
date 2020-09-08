@@ -6,6 +6,7 @@ const Container = styled.div`
   display: flex;
   height: 91%;
   /* width: 210%; */
+  flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
   color: black;
@@ -88,7 +89,7 @@ const About = ({
         style={{ position: 'relative', bottom: '0vh', left: '-8vh' }}
       >
         <img
-          src='https://www.dropbox.com/s/dxanp0t3vphs3e8/blu_hover.jpg?dl=1'
+          src='https://www.dropbox.com/s/dxanp0t3vphs3e8/blu_hover.jpg?raw=1'
           alt='Blu'
           style={{
             display:
@@ -102,7 +103,7 @@ const About = ({
         />
         <img
           className='blu'
-          src='https://www.dropbox.com/s/dx23fdw7u3as95z/blu_main.jpg?dl=1'
+          src='https://www.dropbox.com/s/dx23fdw7u3as95z/blu_main.jpg?raw=1'
           alt='Blu'
           height={'auto'}
           onMouseMove={(e) => setBluPosition({ x: e.pageX, y: e.pageY })}
@@ -124,7 +125,7 @@ const About = ({
         }}
       >
         <img
-          src='https://www.dropbox.com/s/1ia0iqpqonrs8kd/eve_hover.jpg?dl=1'
+          src='https://www.dropbox.com/s/1ia0iqpqonrs8kd/eve_hover.jpg?raw=1'
           alt='Eve'
           style={{
             display:
@@ -138,7 +139,7 @@ const About = ({
         />
         <img
           className='eve'
-          src='https://www.dropbox.com/s/3iyfgfaylynnp8f/eve_main.jpg?dl=1'
+          src='https://www.dropbox.com/s/3iyfgfaylynnp8f/eve_main.jpg?raw=1'
           alt='Eve'
           height={'auto'}
           onMouseMove={(e) => {
@@ -159,7 +160,7 @@ const About = ({
         <br />
         <br />
         <p>
-          In the quarantine world, they came together to create Co-experiment
+          In the quarantine world, they came together to create Co-experiments
           project with beliefs that this is time to practice, to learn and to
           grow.
         </p>
@@ -167,7 +168,7 @@ const About = ({
 
       <SecondItem>
         <p>
-          Co-experiment is an experiment of expressions in the new-normal world
+          Co-experiments is an experiment of expressions in the new-normal world
           through design.
         </p>
         <br />

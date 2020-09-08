@@ -17,15 +17,11 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4vh;
+  font-size: 3.8vh;
   text-align: center;
 
   p {
     margin-block-start: 0;
-  }
-
-  .counter {
-    margin-top: 20vh;
   }
 `;
 
