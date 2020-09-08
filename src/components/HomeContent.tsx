@@ -51,7 +51,7 @@ const HomeContent = ({
     <Container>
       <video autoPlay muted loop id='myVideo'>
         <source
-          src='https://www.dropbox.com/s/z1m86t6ajlqixf5/homepage.mp4?dl=1'
+          src='https://www.dropbox.com/s/z1m86t6ajlqixf5/homepage.mp4?raw=1'
           type='video/mp4'
         />
       </video>
