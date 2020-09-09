@@ -154,6 +154,7 @@ const Time = () => {
           autoPlay
           loop
           muted
+          playsInline
           className='images image-1'
           width={800}
           height={600}

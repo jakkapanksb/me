@@ -116,6 +116,8 @@ const Disconnected = () => {
         <video
           autoPlay
           loop
+          playsInline
+          muted
           className='images image-1 video'
           width={800}
           height={600}

@@ -12,8 +12,8 @@ const Container = styled.div`
 
   #myVideo {
     position: fixed;
-    right: 0;
-    bottom: 0;
+    left: 0;
+    top: 0;
     min-width: 100%;
     min-height: 100%;
     z-index: -1;
@@ -49,7 +49,7 @@ const HomeContent = ({
 
   return (
     <Container>
-      <video autoPlay muted loop id='myVideo'>
+      <video autoPlay muted loop playsInline id='myVideo'>
         <source
           src='https://www.dropbox.com/s/z1m86t6ajlqixf5/homepage.mp4?raw=1'
           type='video/mp4'
