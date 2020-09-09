@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   height: 91%;
   /* width: 210%; */
-  flex-direction: column;
+  /* flex-direction: column; */
   flex-wrap: nowrap;
   justify-content: flex-start;
   color: black;
