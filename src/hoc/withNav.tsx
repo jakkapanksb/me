@@ -126,7 +126,7 @@ const withNav = <
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            co-experiments
+            Co-experiments
           </MainLink>
           {!isHome ? (
             <LinkGroup>
@@ -148,7 +148,7 @@ const withNav = <
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}
           >
-            who we are
+            Who we are
           </MainLink>
         </Nav>
       )}
@@ -160,7 +160,7 @@ const withNav = <
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            co-experiments
+            Co-experiments
           </MainLink>
           <MainLink pathname={pathname} to='/disconnected'>
             Isolation
@@ -178,7 +178,7 @@ const withNav = <
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}
           >
-            who we are
+            Who we are
           </MainLink>
         </LinkContainer>
       ) : (
