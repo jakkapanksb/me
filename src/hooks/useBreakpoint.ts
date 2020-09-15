@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
 import { throttle } from 'lodash';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
 
@@ -35,7 +35,11 @@ const useBreakpoint = () => {
     [breakpoint]
   );
 
-  return { breakpoint, isMatched };
+  const isMobile = useMemo(() => {
+    return breakpoint === 'xs' || breakpoint === 'sm';
+  }, [breakpoint]);
+
+  return { breakpoint, isMatched, isMobile };
 };
 
 export default useBreakpoint;

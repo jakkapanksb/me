@@ -1,31 +1,41 @@
+import { useBreakpoint } from 'hooks';
 import React from 'react';
+import styled, { css } from 'styled-components';
 import './About.css';
-import styled from 'styled-components';
 
-const Container = styled.div`
+const Container = styled.div<{ isMobile?: boolean }>`
   display: flex;
   height: 91%;
-  /* width: 210%; */
-  /* flex-direction: column; */
   flex-wrap: nowrap;
   justify-content: flex-start;
   color: black;
-  font-size: 4vh;
+  font-size: ${({ isMobile }) => (isMobile ? '1em' : '4vh')};
   background-color: white;
   padding-top: 4vh;
+
+  flex-direction: ${({ isMobile }: { isMobile?: boolean }) =>
+    isMobile ? 'column' : 'row'};
 `;
 
-const FlexItem = styled.div`
-  margin: 0 6vh;
+const FlexItem = styled.div<{ isMobile?: boolean }>`
+  margin: ${({ isMobile }) => (isMobile ? '0' : '0 6vh')};
 `;
 
 const FirstItem = styled(FlexItem)`
-  flex: 0 0 16em;
+  ${({ isMobile }) =>
+    !isMobile &&
+    css`
+      flex: 0 0 16em;
+    `}
 `;
 
 const SecondItem = styled(FlexItem)`
-  flex: 0 0 16em;
-  padding-right: 5vh;
+  ${({ isMobile }) =>
+    !isMobile &&
+    css`
+      flex: 0 0 16em;
+      padding-right: 5vh;
+    `}
 `;
 
 const NormalItem = styled(FlexItem)`
@@ -46,18 +56,23 @@ const NormalItem = styled(FlexItem)`
   } */
 `;
 
-const BluName = styled.p`
-  font-size: 18vh;
+const BluName = styled.p<{ isMobile?: boolean }>`
+  font-size: ${({ isMobile }) => (isMobile ? '14vw' : '18vh')};
   position: relative;
-  top: -4vh;
-  left: -6vh;
+  top: ${({ isMobile }) => (isMobile ? '-4vw' : '-4vh')};
+  left: ${({ isMobile }) => (isMobile ? '-5vw' : '-6vh')};
 `;
 
-const EveName = styled.p`
-  font-size: 18vh;
+const EveName = styled.p<{ isMobile?: boolean }>`
+  font-size: ${({ isMobile }) => (isMobile ? '14vw' : '18vh')};
   position: relative;
-  margin-left: -91.5vh;
-  top: -6vh;
+  margin-left: ${({ isMobile }) => (isMobile ? 0 : '-91.5vh')};
+  top: ${({ isMobile }) => (isMobile ? '-6vw' : '-6vh')};
+  ${({ isMobile }) =>
+    isMobile &&
+    css`
+      left: 4vw;
+    `}
 `;
 
 const About = ({
@@ -68,25 +83,33 @@ const About = ({
   const [bluPosition, setBluPosition] = React.useState({ x: 0, y: 0 });
   const [evePosition, setEvePosition] = React.useState({ x: 0, y: 0 });
 
+  const { isMobile } = useBreakpoint();
+
   React.useEffect(() => {
-    // const container = document.getElementsByTagName('html')[0];
-    const container = document.getElementById('main-layout');
-    if (container) {
-      const handleWheel = (e: WheelEvent) => {
-        if (e.deltaY > 0) container.scrollLeft += e.deltaY;
-        else if (e.deltaY < 0) container.scrollLeft += e.deltaY;
-      };
-      container.addEventListener('wheel', handleWheel);
-      return () => {
-        container.removeEventListener('wheel', handleWheel);
-      };
+    if (!isMobile) {
+      const container = document.getElementById('main-layout');
+      if (container) {
+        const handleWheel = (e: WheelEvent) => {
+          if (e.deltaY > 0) container.scrollLeft += e.deltaY;
+          else if (e.deltaY < 0) container.scrollLeft += e.deltaY;
+        };
+        container.addEventListener('wheel', handleWheel);
+        return () => {
+          container.removeEventListener('wheel', handleWheel);
+        };
+      }
     }
-  }, []);
+  }, [isMobile]);
+
   return (
-    <Container className='container'>
+    <Container className='container' isMobile={isMobile}>
       <NormalItem
         name='blu'
-        style={{ position: 'relative', bottom: '0vh', left: '-8vh' }}
+        style={{
+          position: 'relative',
+          bottom: '0vh',
+          left: isMobile ? '0' : '-8vh',
+        }}
       >
         <img
           src='https://www.dropbox.com/s/dxanp0t3vphs3e8/blu_hover.jpg?raw=1'
@@ -110,68 +133,120 @@ const About = ({
           onMouseLeave={() => {
             setBluPosition({ x: 0, y: 0 });
           }}
-          style={{ alignSelf: 'flex-end', width: '60vh' }}
+          style={{ alignSelf: 'flex-end', width: isMobile ? '70%' : '60vh' }}
         />
-        <BluName>Blu</BluName>
+        <BluName isMobile={isMobile}>Blu</BluName>
       </NormalItem>
 
       <NormalItem
         name='eve'
         style={{
-          marginLeft: '42vh',
+          marginLeft: isMobile ? 0 : '42vh',
           position: 'relative',
-          bottom: '14vh',
-          marginRight: '64vh',
+          bottom: isMobile ? 0 : '14vh',
+          marginRight: isMobile ? 0 : '64vh',
+          ...(isMobile && {
+            marginTop: '5vw',
+          }),
         }}
       >
-        <img
-          src='https://www.dropbox.com/s/1ia0iqpqonrs8kd/eve_hover.jpg?raw=1'
-          alt='Eve'
-          style={{
-            display:
-              evePosition.x === 0 && evePosition.y === 0 ? 'none' : undefined,
-            position: 'fixed',
-            width: '30vh',
-            left: evePosition.x,
-            top: evePosition.y + 10,
-            zIndex: 1,
-          }}
-        />
-        <img
-          className='eve'
-          src='https://www.dropbox.com/s/3iyfgfaylynnp8f/eve_main.jpg?raw=1'
-          alt='Eve'
-          height={'auto'}
-          onMouseMove={(e) => {
-            setEvePosition({ x: e.pageX, y: e.pageY });
-          }}
-          onMouseLeave={() => {
-            setEvePosition({ x: 0, y: 0 });
-          }}
-          style={{ width: '60vh' }}
-        />
-        <EveName>Eve</EveName>
+        {isMobile ? (
+          <>
+            <EveName isMobile={isMobile}>Eve</EveName>
+            <img
+              src='https://www.dropbox.com/s/1ia0iqpqonrs8kd/eve_hover.jpg?raw=1'
+              alt='Eve'
+              style={{
+                display:
+                  evePosition.x === 0 && evePosition.y === 0
+                    ? 'none'
+                    : undefined,
+                position: 'fixed',
+                width: '30vh',
+                left: evePosition.x,
+                top: evePosition.y + 10,
+                zIndex: 1,
+              }}
+            />
+            <img
+              className='eve'
+              src='https://www.dropbox.com/s/3iyfgfaylynnp8f/eve_main.jpg?raw=1'
+              alt='Eve'
+              height={'auto'}
+              onMouseMove={(e) => {
+                setEvePosition({ x: e.pageX, y: e.pageY });
+              }}
+              onMouseLeave={() => {
+                setEvePosition({ x: 0, y: 0 });
+              }}
+              style={{
+                width: isMobile ? '70%' : '60vh',
+                alignSelf: 'flex-end',
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <img
+              src='https://www.dropbox.com/s/1ia0iqpqonrs8kd/eve_hover.jpg?raw=1'
+              alt='Eve'
+              style={{
+                display:
+                  evePosition.x === 0 && evePosition.y === 0
+                    ? 'none'
+                    : undefined,
+                position: 'fixed',
+                width: '30vh',
+                left: evePosition.x,
+                top: evePosition.y + 10,
+                zIndex: 1,
+              }}
+            />
+            <img
+              className='eve'
+              src='https://www.dropbox.com/s/3iyfgfaylynnp8f/eve_main.jpg?raw=1'
+              alt='Eve'
+              height={'auto'}
+              onMouseMove={(e) => {
+                setEvePosition({ x: e.pageX, y: e.pageY });
+              }}
+              onMouseLeave={() => {
+                setEvePosition({ x: 0, y: 0 });
+              }}
+              style={{ width: isMobile ? '70%' : '60vh' }}
+            />
+            <EveName isMobile={isMobile}>Eve</EveName>
+          </>
+        )}
       </NormalItem>
-      <FirstItem>
+      <FirstItem isMobile={isMobile}>
         <p>
           Blu and Eve are designers based in the Bay area originally from
           Bangkok.
         </p>
-        <br />
-        <br />
-        <p>
+        {!isMobile && (
+          <>
+            <br />
+            <br />
+          </>
+        )}
+        <p style={{ marginBlockEnd: isMobile ? 0 : undefined }}>
           In the quarantine world, they came together to create Co-experiments
           project with beliefs that this is time to practice, to learn and to
           grow.
         </p>
       </FirstItem>
 
-      <SecondItem>
+      <SecondItem isMobile={isMobile}>
         <p>
           Co-experiments is an experiment of expressions in the new-normal world
           through design.
         </p>
-        <br />
+        {!isMobile && (
+          <>
+            <br />
+          </>
+        )}
         <p>
           Contact <br />
           blueve.design@gmail.com <br />

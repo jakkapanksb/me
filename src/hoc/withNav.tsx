@@ -21,8 +21,9 @@ const MainLink = styled(StyledLink)`
     margin-bottom: -3px;
   }
 
-  ${(props: { pathname: string }) =>
+  ${(props: { pathname: string; isMobile?: boolean }) =>
     props.pathname === '/whoweare' &&
+    !props.isMobile &&
     css`
       font-size: 2vh;
     `}
@@ -58,7 +59,7 @@ const LinkGroup = styled.span`
   }
 `;
 
-const LinkContainer = styled.div`
+const LinkContainer = styled.div<{ isShowMenu: boolean }>`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -67,6 +68,12 @@ const LinkContainer = styled.div`
   justify-content: center;
   align-content: center;
   font-size: calc(25px + (38 - 25) * ((100vw - 300px) / (1600 - 300)));
+
+  ${({ isShowMenu }) =>
+    isShowMenu &&
+    css`
+      padding-bottom: 58vw;
+    `}
 
   a:hover {
     color: #2e47ff;
@@ -84,7 +91,7 @@ const withNav = <
 ): React.FC<P> => (props) => {
   const [isShowMenu, setIsShowMenu] = useState(false);
   const { pathname } = useLocation();
-  const { isMatched } = useBreakpoint();
+  const { isMatched, isMobile } = useBreakpoint();
 
   const isHome = pathname === '/';
   const { setShowCursor } = props;
@@ -153,27 +160,29 @@ const withNav = <
         </Nav>
       )}
       {shouldShowMenu ? (
-        <LinkContainer>
+        <LinkContainer isShowMenu={isShowMenu}>
           <MainLink
             pathname={pathname}
             to='/'
+            isMobile={isMobile}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             Co-experiments
           </MainLink>
-          <MainLink pathname={pathname} to='/disconnected'>
+          <MainLink pathname={pathname} to='/disconnected' isMobile={isMobile}>
             Isolation
           </MainLink>
-          <MainLink pathname={pathname} to='/time'>
+          <MainLink pathname={pathname} to='/time' isMobile={isMobile}>
             Lost track of time
           </MainLink>
-          <MainLink pathname={pathname} to='/anxious'>
+          <MainLink pathname={pathname} to='/anxious' isMobile={isMobile}>
             Anxiety
           </MainLink>
           <MainLink
             pathname={pathname}
             to='/whoweare'
+            isMobile={isMobile}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}

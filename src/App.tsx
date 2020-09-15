@@ -1,28 +1,25 @@
-import React from 'react';
-import { Disconnected } from 'pages/Disconnected';
-import { Time } from 'pages/Time';
-import {
-  // BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation,
-} from 'react-router-dom';
-import Anxious from 'pages/Anxious';
 import Cursor from 'components/Cursor';
-// import styled from 'styled-components';
-import './style.css';
-import Home from 'pages/Home';
-import About from 'pages/About';
-import styled, { css } from 'styled-components';
 import withNav from 'hoc/withNav';
+import { useBreakpoint } from 'hooks';
+import About from 'pages/About';
+import Anxious from 'pages/Anxious';
+import { Disconnected } from 'pages/Disconnected';
+import Home from 'pages/Home';
+import { Time } from 'pages/Time';
+import React from 'react';
+import { Route, Switch, useLocation } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import './style.css';
 
 export type State = {
   step: number;
 };
 
 export const MainContainer = styled.div`
-  margin: ${(props: { pathname?: string }) =>
-    props.pathname !== '/whoweare' ? '3.5vw 4vw 4vw 4vw' : '7vh 8vh 8vh 8vh'};
+  margin: ${(props: { pathname?: string; isMobile?: boolean }) =>
+    props.pathname !== '/whoweare' || props.isMobile
+      ? '3.5vw 4vw 4vw 4vw'
+      : '7vh 8vh 8vh 8vh'};
 
   ${(props: { pathname?: string }) =>
     props.pathname === '/whoweare' &&
@@ -36,7 +33,6 @@ export const MainContainer = styled.div`
 const MainLayout = styled.div`
   height: 100%;
   width: 100%;
-  position: absolute;
   top: 0;
   left: 0;
 
@@ -46,14 +42,20 @@ const MainLayout = styled.div`
       overflow: hidden;
     `}
 
-  ${(props: { pathname: string }) =>
+  ${(props: { pathname: string; isMobile?: boolean }) =>
     props.pathname === '/whoweare' &&
     css`
       background-color: white;
       color: black;
       /* width: 3500px; */
       /* width: 200%; */
-      overflow-y: hidden;
+      overflow-y: ${!props.isMobile ? 'hidden' : 'auto'};
+    `}
+    
+  ${({ isMobile }: { isMobile?: boolean }) =>
+    !isMobile &&
+    css`
+      position: absolute;
     `}
 `;
 
@@ -79,6 +81,7 @@ const App = () => {
   const [showCursor, setShowCursor] = React.useState(true);
 
   const { pathname } = useLocation();
+  const { isMobile } = useBreakpoint();
 
   const stepIncrement = React.useCallback(() => {
     setState((state) => ({ ...state, step: state.step + 1 }));
@@ -112,7 +115,7 @@ const App = () => {
   }, []);
 
   return (
-    <MainLayout id='main-layout' pathname={pathname}>
+    <MainLayout id='main-layout' pathname={pathname} isMobile={isMobile}>
       <Cursor showCursor={showCursor} />
 
       <Switch>
@@ -139,7 +142,7 @@ const App = () => {
           </MainContainer>
         </Route>
         <Route path='/whoweare'>
-          <MainContainer pathname={pathname}>
+          <MainContainer pathname={pathname} isMobile={isMobile}>
             <NavAbout setShowCursor={setShowCursor} />
           </MainContainer>
         </Route>
