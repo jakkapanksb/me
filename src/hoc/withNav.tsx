@@ -25,7 +25,7 @@ const MainLink = styled(StyledLink)`
     props.pathname === '/whoweare' &&
     !props.isMobile &&
     css`
-      font-size: 2vh;
+      font-size: calc(12px + (19 - 12) * ((100vw - 300px) / (1600 - 300)));
     `}
 
   ${(props: { pathname: string }) =>
@@ -44,9 +44,14 @@ const Nav = styled.nav`
   ${(props: { pathname: string }) =>
     props.pathname === '/whoweare' &&
     css`
-      @media only screen and (min-width: 600px) {
+      @media only screen and (min-width: 1301px) {
         position: fixed;
         width: 92%;
+      }
+
+      @media only screen and (min-width: 600px) and (max-width: 1300px) {
+        position: fixed;
+        width: 80vw;
       }
     `}
 `;

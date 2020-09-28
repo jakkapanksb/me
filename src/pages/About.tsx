@@ -213,7 +213,10 @@ const About = ({
               onMouseLeave={() => {
                 setEvePosition({ x: 0, y: 0 });
               }}
-              style={{ width: isMobile ? '70%' : '60vh' }}
+              style={{
+                width: isMobile ? '70%' : '60vh',
+                alignSelf: 'flex-start',
+              }}
             />
             <EveName isMobile={isMobile}>Eve</EveName>
           </>
