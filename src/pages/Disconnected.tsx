@@ -1,20 +1,79 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useParallax } from 'hooks/useParallax';
 
 const Container = styled.div`
   position: relative;
   .title {
-    top: 15vh;
+    top: 7.5vw;
   }
 
   .label {
-    top: 0vh;
+    /* font-size: 2.2vh; */
+    /* font-size: 1.1vw; */
     font-size: 1vw;
-    width: 600px;
+    width: 70%;
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+      font-size: 1em;
+      margin-top: 10vw;
+    }
   }
 
   .first-left {
-    margin-top: 107vh;
+    @media only screen and (min-width: 600px) {
+      margin-top: 53vw;
+    }
+  }
+
+  .first-right-image {
+    @media only screen and (min-width: 600px) {
+      margin-top: 2.5vw;
+    }
+  }
+
+  .second-right-image {
+    @media only screen and (min-width: 600px) {
+      margin-top: 15vw;
+    }
+  }
+
+  .flex-item-1 > img,
+  .flex-item-2 > img,
+  .flex-item-1 > .image-box,
+  .flex-item-2 > .image-box {
+    max-width: 100%;
+    width: 90%;
+  }
+
+  .flex-item-1 > img.vertical,
+  .flex-item-2 > img.vertical,
+  .flex-item-1 > .image-box.vertical,
+  .flex-item-2 > .image-box.vertical {
+    max-width: 100%;
+    width: 70%;
+  }
+
+  .image-box > img {
+    width: 100%;
+  }
+
+  .video {
+    @media only screen and (min-width: 600px) {
+      margin-top: 28vw;
+    }
+  }
+
+  .last-image {
+    @media only screen and (min-width: 600px) {
+      margin-top: 15vw;
+    }
+  }
+
+  .flex-item-2 {
+    @media only screen and (max-width: 600px) {
+      margin-top: 10vw;
+    }
   }
 `;
 
@@ -35,87 +94,63 @@ export function moveSlowly(
     (parseInt(element.style.top) < minRange && deltaY < 0)
   )
     return;
-  if (deltaY > 0) element.style.top = `${parseInt(element.style.top) + 2}vh`;
-  else element.style.top = `${parseInt(element.style.top) - 2}vh`;
+  if (deltaY > 0) element.style.top = `${parseInt(element.style.top) - 2}vh`;
+  else element.style.top = `${parseInt(element.style.top) + 2}vh`;
 }
 
 const Disconnected = () => {
-  // React.useEffect(() => {
-  //   function handleWheel(e: WheelEvent) {
-  //     const title = document.getElementById('title');
-  //     const label = document.getElementById('label');
-  //     if (label) moveSlowly(e.deltaY, 0, label);
-  //     if (title) moveSlowly(e.deltaY, 15, title);
-  //   }
-  //   const container = document.getElementById('container');
-  //   if (container) {
-  //     container.addEventListener('wheel', handleWheel);
-  //     return () => {
-  //       container.removeEventListener('wheel', handleWheel);
-  //     };
-  //   }
-  // }, []);
+  const titleRef = React.useRef(null);
+  const { parallaxStyles } = useParallax();
 
   return (
     <Container id='container' className='flex-container'>
       <div className='flex-item-1'>
-        <p id='title' className='title'>
+        <p id='title' className='title' ref={titleRef} style={parallaxStyles}>
           Isolation
         </p>
         <img
-          className='images image-2 first-left'
-          src='https://www.dropbox.com/s/kj931zhnfyvcnad/Disconnected%2002.jpg?dl=1'
+          className='images image-2 first-left vertical'
+          src='https://www.dropbox.com/s/kj931zhnfyvcnad/Disconnected%2002.jpg?raw=1'
           alt='Disconnected-02'
-          width={600}
-          height={800}
         />
         <video
           autoPlay
           loop
-          className='images image-1'
+          playsInline
+          muted
+          className='images image-1 video'
           width={800}
           height={600}
-          style={{ marginTop: '60vh' }}
         >
           <source
-            src='https://www.dropbox.com/s/nmwost8czpsc4gb/Disconnected%2004.mp4?dl=1'
+            src='https://www.dropbox.com/s/nmwost8czpsc4gb/Disconnected%2004.mp4?raw=1'
             type='video/mp4'
           />
         </video>
-        <div className='image-box image-2' style={{ marginTop: '30vh' }}>
+        <div className='image-box image-2 vertical last-image'>
           <img
             className='images'
-            src='https://www.dropbox.com/s/b6q8hlvo548r4y8/Disconnected%2006.png?dl=1'
+            src='https://www.dropbox.com/s/b6q8hlvo548r4y8/Disconnected%2006.png?raw=1'
             alt='Disconnected-06'
-            width={600}
-            height={800}
           />
           <img
             className='images hover'
-            src='https://www.dropbox.com/s/u9dlkh6q7iu77fo/Disconnected%2006_hover.png?dl=1'
+            src='https://www.dropbox.com/s/u9dlkh6q7iu77fo/Disconnected%2006_hover.png?raw=1'
             alt='Disconnected-06'
             title='Disconnected-06'
-            width={600}
-            height={800}
           />
         </div>
       </div>
       <div className='flex-item-2'>
-        {/* <p id='label' className='label'>
-          &emsp;Many of us are restricted to see out loved ones. The feelings of
-          isolation hit us in more places than the heart and head. Even though
-          technology enables us to connect with out family, friends and
-          colleagues regardless of where we are, but we can easily feel isolated
-          and disconnected without physical contract.
-        </p> */}
         <img
-          className='images image-1 first-left-image'
-          src='https://www.dropbox.com/s/hlvvtza3894b9z1/Disconnected%2001.jpg?dl=1'
+          // className='images image-1 first-right-image'
+          className='first-right-image image-1'
+          src='https://www.dropbox.com/s/hlvvtza3894b9z1/Disconnected%2001.jpg?raw=1'
           alt='Disconnected-01'
-          width={800}
-          height={600}
+          // width={800}
+          // height={600}
         />
-        <p id='label' className='label'>
+        <p id='label' className='label' style={parallaxStyles}>
           &emsp;&emsp;&emsp;&emsp;&emsp;Many of us are restricted to see our
           loved ones. The feelings of isolation hit us in more places than the
           heart and head. We may feel lonelier even though technology enables us
@@ -129,56 +164,50 @@ const Disconnected = () => {
           nostalgic photography shows just how much we want to see our loved
           ones again.
         </p>
-
-        <div
-          className='image-box image-2 first-right-image'
-          style={{ marginTop: '32vh' }}
-        >
+        <div className='image-box image-2 second-right-image'>
           <img
             className='images hover'
-            src='https://www.dropbox.com/s/qtcnrxf1ix9p5r6/Disconnected%2003_hover.jpg?dl=1'
+            src='https://www.dropbox.com/s/qtcnrxf1ix9p5r6/Disconnected%2003_hover.jpg?raw=1'
             alt='Disconnceted-03'
             width={800}
             height={600}
           />
           <img
             className='images'
-            src='https://www.dropbox.com/s/iffl5v4bhng3vzs/Disconnected%2003.png?dl=1'
+            src='https://www.dropbox.com/s/iffl5v4bhng3vzs/Disconnected%2003.png?raw=1'
             alt='Disconnected-03'
             width={800}
             height={600}
           />
         </div>
-        <div className='image-box image-3'>
+        <div
+          className='image-box image-3 vertical'
+          style={{ marginTop: '5vw' }}
+        >
           <img
             className='images'
-            src='https://www.dropbox.com/s/kiaucokh13nnhom/Disconnected%2005.jpg?dl=1'
+            src='https://www.dropbox.com/s/kiaucokh13nnhom/Disconnected%2005.jpg?raw=1'
             alt='Disconnected-05'
-            width={600}
-            height={800}
           />
           <img
             className='images hover'
-            src='https://www.dropbox.com/s/lunv6jrrqxyd09i/Disconnected%2005_hover.jpg?dl=1'
+            src='https://www.dropbox.com/s/lunv6jrrqxyd09i/Disconnected%2005_hover.jpg?raw=1'
             alt='Disconnected-05'
-            width={600}
-            height={800}
           />
         </div>
-        <div className='image-box image-1' style={{ marginTop: '5vh' }}>
+        <div
+          className='image-box image-1 vertical'
+          style={{ marginTop: '2.5vw' }}
+        >
           <img
             className='images'
-            src='https://www.dropbox.com/s/f4ud04587hro140/Disconnected%2007.png?dl=1'
+            src='https://www.dropbox.com/s/f4ud04587hro140/Disconnected%2007.png?raw=1'
             alt='Disconnected-07'
-            width={600}
-            height={800}
           />
           <img
             className='images hover'
-            src='https://www.dropbox.com/s/zxn0nr7k06ceyqj/Disconnected%2007_hover.jpg?dl=1'
+            src='https://www.dropbox.com/s/zxn0nr7k06ceyqj/Disconnected%2007_hover.jpg?raw=1'
             alt='Disconnected-07'
-            width={600}
-            height={800}
           />
         </div>
       </div>

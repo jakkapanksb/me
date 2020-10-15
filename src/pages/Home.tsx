@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 import withNav from 'hoc/withNav';
 import HomeContent from 'components/HomeContent';
-import { MainContainer } from 'App';
+import { MainContainer, State } from 'App';
 
 const NavContent = withNav(HomeContent);
 
@@ -17,20 +17,33 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2vw;
+  font-size: 3.8vh;
+  text-align: center;
 
   p {
     margin-block-start: 0;
   }
 `;
 
+const startCountingDate = '03/09/2020';
+
+const diffDays = Math.ceil(
+  (new Date().getTime() - new Date(startCountingDate).getTime()) /
+    (1000 * 3600 * 24)
+);
+
+const interval = ((150 / diffDays) * 1000) / 60;
+
 const Home = ({
   setShowCursor,
+  state: { step },
+  stepIncrement,
 }: {
   setShowCursor: React.Dispatch<React.SetStateAction<boolean>>;
+  state: State;
+  stepIncrement: () => void;
 }) => {
-  const [step, setStep] = React.useState(0);
-  const days = 152;
+  const [count, setCount] = React.useState(0);
   const transitions = useTransition(step, null, {
     from: { position: 'absolute', opacity: 0 },
     enter: { opacity: 1 },
@@ -39,36 +52,45 @@ const Home = ({
 
   React.useEffect(() => {
     if (step === 0) setShowCursor(false);
-    else if (step === 2) setShowCursor(true);
+    else if (step === 2) {
+      setShowCursor(true);
+    }
     if (step < 2) {
       const increment = () => {
-        setStep((step) => {
-          return step + 1;
-        });
+        stepIncrement();
       };
-      const interval = setInterval(increment, 3000);
+      const intervalId = setInterval(increment, 3000);
       return () => {
-        clearInterval(interval);
+        clearInterval(intervalId);
       };
     }
-  }, [step, setShowCursor]);
+  }, [step, stepIncrement, setShowCursor]);
+
+  React.useEffect(() => {
+    const id = setInterval(() => {
+      setCount((count) => (count < diffDays ? count + 1 : count));
+    }, interval);
+    return () => {
+      clearInterval(id);
+    };
+  }, [setCount]);
 
   return (
     <>
-      {transitions.map(({ item, props }) =>
+      {transitions.map(({ item, props, key }) =>
         item === 0 ? (
-          <Container>
+          <Container key={key}>
             <animated.p style={props}>
-              We've been in lockdown for {days} days
+              We've been in lockdown for {count} days
             </animated.p>
           </Container>
         ) : item === 1 ? (
-          <Container>
+          <Container key={key}>
             <animated.p style={props}>How are you hanging in there?</animated.p>
           </Container>
         ) : (
-          <MainContainer>
-            <NavContent />
+          <MainContainer key={key}>
+            <NavContent setShowCursor={setShowCursor} />
           </MainContainer>
         )
       )}
